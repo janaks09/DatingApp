@@ -46,9 +46,8 @@ namespace Koseli.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-
             var userFromLogin = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
-            if (userForLoginDto == null)
+            if (userFromLogin == null)
                 return Unauthorized();
 
             var claims = new[]{
